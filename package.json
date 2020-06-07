@@ -38,13 +38,5 @@
       "last 1 safari version"
     ]
   },
-  "license": "MIT",
-  "jest": {
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/src/index.tsx",
-      "/src/serviceWorker.ts",
-      "/src/**/*.stories.tsx"
-    ]
-  }
+  "license": "MIT"
 }
