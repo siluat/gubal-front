@@ -13,7 +13,7 @@ for (let i = 0; i < JobIconPaths.length; i++) {
   );
 }
 
-type JobIconMorphProps = {
+export type JobIconMorphProps = {
   color?: string;
 };
 
