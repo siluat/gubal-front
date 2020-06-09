@@ -10,9 +10,9 @@ const FullScreenBlock = styled.div`
   align-items: center;
 `;
 
-type FullScreenProps = {
+export interface FullScreenProps {
   children?: React.ReactNode;
-};
+}
 
 function FullScreen({ children }: FullScreenProps) {
   return <FullScreenBlock>{children}</FullScreenBlock>;

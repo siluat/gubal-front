@@ -13,9 +13,9 @@ for (let i = 0; i < JobIconPaths.length; i++) {
   );
 }
 
-export type JobIconMorphProps = {
+export interface JobIconMorphProps {
   color?: string;
-};
+}
 
 function JobIconMorph({ color = '#000000' }: JobIconMorphProps) {
   const [pathIndex, setPathIndex] = useState(0);
