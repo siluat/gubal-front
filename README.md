@@ -1,10 +1,9 @@
 # gubal-front
 
 [![Build Status](https://travis-ci.org/siluat/gubal-front.svg?branch=master)](https://travis-ci.org/siluat/gubal-front)
-[![Codecov](https://img.shields.io/codecov/c/github/siluat/gubal-front)](https://codecov.io/gh/siluat/gubal-front)
+[![Codecov](https://img.shields.io/codecov/c/github/siluat/gubal-front?token=27n9i6zc7m)](https://codecov.io/gh/siluat/gubal-front)
 
 파이널 판타지 14 한국 서비스용 게임 정보 검색 서비스
-
 ## 설치 및 실행
 
 ### 1. 필수 도구 설치
