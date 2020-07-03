@@ -17,7 +17,7 @@ export interface JobIconMorphProps {
   color?: string;
 }
 
-function JobIconMorph({ color = '#000000' }: JobIconMorphProps) {
+function JobIconMorph({ color = '#bbac94' }: JobIconMorphProps) {
   const [pathIndex, setPathIndex] = useState(0);
   const [frame, setFrame] = useState(0);
 
@@ -46,7 +46,9 @@ function JobIconMorph({ color = '#000000' }: JobIconMorphProps) {
 
   return (
     <svg width="64" height="64" viewBox="0 0 512 512">
-      <title>{JobIconPaths[(pathIndex + 1) % JobIconPaths.length].job}</title>
+      <title data-testid="job-title">
+        {JobIconPaths[(pathIndex + 1) % JobIconPaths.length].job}
+      </title>
       <path fill={color} d={interpolators[pathIndex](frame)} />
     </svg>
   );

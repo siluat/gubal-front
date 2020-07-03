@@ -1,15 +1,19 @@
 import React from 'react';
-import { render, wait, waitForDomChange } from '@testing-library/react';
+import { render, screen, wait } from '@testing-library/react';
 import JobIconMorph from './JobIconMorph';
 
-test('렌더링', async () => {
-  const { container, getByText } = render(<JobIconMorph />);
-  const svgElement = container.querySelector('svg');
-  expect(svgElement).toBeInTheDocument();
+test('기본 렌더링', async () => {
+  render(<JobIconMorph />);
 
-  // SVG가 자동으로 변한다
-  await waitForDomChange({ container });
+  const firstTitle = screen.getByTestId('job-title').innerHTML;
   await wait(() => {
-    getByText('전사');
+    expect(screen.queryByText(firstTitle)).not.toBeInTheDocument();
+    expect(screen.getByTestId('job-title')).toBeInTheDocument();
+  });
+
+  const secondTitle = screen.getByTestId('job-title').innerHTML;
+  await wait(() => {
+    expect(screen.getByText(secondTitle)).toBeInTheDocument();
+    expect(screen.getByTestId('job-title')).toBeInTheDocument();
   });
 });
