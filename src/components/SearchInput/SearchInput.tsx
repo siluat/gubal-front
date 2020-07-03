@@ -2,18 +2,18 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Icon from '../Icon/Icon';
 
-function SearchForm() {
+function SearchInput() {
   return (
-    <StyledForm>
+    <SearchInputBlock>
       <Icon type="find" color={placeholderColor} />
       <StyledInput aria-label="검색어" placeholder="검색어를 입력하세요" />
-    </StyledForm>
+    </SearchInputBlock>
   );
 }
 
 const placeholderColor = '#adb5bd';
 
-const StyledForm = styled.form`
+const SearchInputBlock = styled.div`
   display: flex;
   flex-direction: row;
   flex-grow: 1;
@@ -27,9 +27,10 @@ const StyledInput = styled.input`
   outline: none;
   padding: 1rem 1rem 0.9rem 0.7rem;
   font-size: 1.1rem;
+  flex-grow: 1;
   ::placeholder {
     color: ${placeholderColor};
   }
 `;
 
-export default SearchForm;
+export default SearchInput;
