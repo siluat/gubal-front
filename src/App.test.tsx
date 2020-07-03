@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, screen, wait } from '@testing-library/react';
 import App, { AppRoute } from './App';
 
 test('렌더링', () => {
@@ -9,10 +9,13 @@ test('렌더링', () => {
 });
 
 test('route /search', async () => {
-  const { getByTestId } = render(
+  render(
     <MemoryRouter initialEntries={['/search']}>
       <AppRoute />
     </MemoryRouter>,
   );
-  expect(getByTestId('search-page')).toBeInTheDocument();
+
+  await wait(() =>
+    expect(screen.getByTestId('search-page')).toBeInTheDocument(),
+  );
 });

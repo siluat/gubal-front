@@ -1,8 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Search from './Search';
 
-test('렌더링', () => {
-  const { container } = render(<Search />);
-  expect(container).toBeInTheDocument();
+describe('Search Page', () => {
+  test('기본 렌더링', () => {
+    render(<Search />);
+
+    const searchInput = screen.getByRole('textbox', { name: '검색어' });
+    expect(searchInput).toBeInTheDocument();
+  });
 });
