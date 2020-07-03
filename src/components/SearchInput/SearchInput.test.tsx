@@ -1,11 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import SearchInput from './SearchInput';
 
-test('렌더링', () => {
-  const { container, getByPlaceholderText } = render(<SearchInput />);
-  expect(container).toBeInTheDocument();
+test('기본 렌더링', () => {
+  render(<SearchInput />);
 
-  const inputElement = getByPlaceholderText('검색어를 입력하세요');
-  expect(inputElement).toBeInTheDocument();
+  const searchInput = screen.getByRole('textbox', { name: '검색어' });
+  expect(searchInput).toBeInTheDocument();
 });

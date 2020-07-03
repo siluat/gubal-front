@@ -6,7 +6,11 @@ function SearchInput() {
   return (
     <SearchInputBlock>
       <Icon type="find" color={placeholderColor} />
-      <StyledInput aria-label="검색어" placeholder="검색어를 입력하세요" />
+      <StyledInput
+        aria-label="검색어"
+        placeholder="검색어를 입력하세요"
+        type="text"
+      />
     </SearchInputBlock>
   );
 }
