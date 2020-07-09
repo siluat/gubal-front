@@ -14,6 +14,7 @@ sagaMiddleware.run(rootSaga);
 describe('library 액션 테스트', () => {
   test('GET_ITEM_SUMMARIES 액션 성공', async () => {
     const expectLibrary = {
+      readyToSearch: true,
       itemSummaries: [
         {
           id: 1,
@@ -47,7 +48,8 @@ describe('library 액션 테스트', () => {
     store.dispatch(getItemSummariesAsync.request());
     await wait(() => {
       const { library } = store.getState();
-      const { error } = library;
+      const { readyToSearch, error } = library;
+      expect(readyToSearch).toBeFalsy();
       expect(error).not.toBeNull();
     });
   });

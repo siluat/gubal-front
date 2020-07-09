@@ -52,19 +52,27 @@ export type ItemSummary = {
 };
 
 type LibraryState = {
+  readyToSearch: boolean;
   itemSummaries: ItemSummary[];
   error: Error | null;
 };
 
 const initialState: LibraryState = {
+  readyToSearch: false,
   itemSummaries: [],
   error: null,
 };
 
 const library = createReducer<LibraryState, LibraryAction>(initialState, {
-  [GET_ITEM_SUMMARIES]: state => ({ ...state, error: null }),
+  [GET_ITEM_SUMMARIES]: state => ({
+    ...state,
+    readyToSearch: false,
+    itemSummaries: [],
+    error: null,
+  }),
   [GET_ITEM_SUMMARIES_SUCCESS]: (state, { payload: itemSummaries }) => ({
     ...state,
+    readyToSearch: true,
     itemSummaries: itemSummaries,
     error: null,
   }),

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import FullScreen from './layouts/FullScreen';
 import JobIconMorph from './components/JobIconMorph/JobIconMorph';
 import styled from '@emotion/styled';
 import Search from './pages/Search';
+import { useDispatch } from 'react-redux';
+import { getItemSummariesAsync } from './modules/library';
 
 const Text = styled.span`
   font-size: 1rem;
@@ -28,6 +30,12 @@ export function AppRoute() {
 }
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getItemSummariesAsync.request());
+  });
+
   return (
     <BrowserRouter>
       <AppRoute />

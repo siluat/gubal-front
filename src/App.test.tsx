@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, screen, wait } from '@testing-library/react';
+import { render, screen, wait } from './utils/test-utils';
 import App, { AppRoute } from './App';
 
 test('렌더링', () => {
