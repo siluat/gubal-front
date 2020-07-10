@@ -1,3 +1,5 @@
+import { ItemUICategoryMap } from './codeMap';
+
 export function decodeIcon(code: string): string {
   const basePath = '/ui/icon';
   const filename = code.padStart(6, '0');
@@ -8,5 +10,10 @@ export function decodeIcon(code: string): string {
 export function decodeItemCategory(
   code: number,
 ): { name: string; icon: string } {
-  return { name: '양손창', icon: '/ui/icon/060000/060104.png' };
+  try {
+    const { name, icon } = ItemUICategoryMap[code];
+    return { name, icon };
+  } catch (e) {
+    return { name: '알수없음', icon: '' };
+  }
 }
