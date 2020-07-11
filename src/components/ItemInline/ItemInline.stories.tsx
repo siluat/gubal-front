@@ -14,6 +14,7 @@ const testItemSummary: ItemSummary = {
   itemLevel: 135,
   rarity: 4,
   category: 5,
+  equipLevel: 50,
 };
 
 export const itemInline = () => <ItemInline item={testItemSummary} />;

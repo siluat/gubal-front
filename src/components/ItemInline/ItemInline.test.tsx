@@ -10,6 +10,7 @@ const testItemSummary: ItemSummary = {
   itemLevel: 135,
   rarity: 4,
   category: 5,
+  equipLevel: 50,
 };
 
 test('기본 렌더링', () => {

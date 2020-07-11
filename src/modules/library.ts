@@ -28,6 +28,7 @@ function* getItemSummariesSaga() {
         itemLevel: i[3],
         rarity: i[4],
         category: i[5],
+        equipLevel: i[6],
       };
     });
     yield put(getItemSummariesAsync.success(itemSummaries));
@@ -40,7 +41,15 @@ export function* librarySaga() {
   yield takeEvery(GET_ITEM_SUMMARIES, getItemSummariesSaga);
 }
 
-export type ItemSummaryRaw = [number, string, string, number, number, number];
+export type ItemSummaryRaw = [
+  number,
+  string,
+  string,
+  number,
+  number,
+  number,
+  number,
+];
 
 export type ItemSummary = {
   id: number;
@@ -49,6 +58,7 @@ export type ItemSummary = {
   itemLevel: number;
   rarity: number;
   category: number;
+  equipLevel: number;
 };
 
 type LibraryState = {
