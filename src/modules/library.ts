@@ -2,8 +2,6 @@ import { createAsyncAction, ActionType, createReducer } from 'typesafe-actions';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { getItemSummaries } from '../lib/api';
 
-export const NOP = 'library/NOP';
-
 export const GET_ITEM_SUMMARIES = 'library/GET_ITEM_SUMMARIES';
 export const GET_ITEM_SUMMARIES_SUCCESS = 'library/GET_ITEM_SUMMARIES_SUCCESS';
 export const GET_ITEM_SUMMARIES_FAILURE = 'library/GET_ITEM_SUMMARIES_FAILURE';
