@@ -1,4 +1,9 @@
-import { createAsyncAction, ActionType, createReducer } from 'typesafe-actions';
+import {
+  createAsyncAction,
+  ActionType,
+  createReducer,
+  createAction,
+} from 'typesafe-actions';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { getItemSummaries } from '../lib/api';
 
@@ -6,13 +11,17 @@ export const GET_ITEM_SUMMARIES = 'library/GET_ITEM_SUMMARIES';
 export const GET_ITEM_SUMMARIES_SUCCESS = 'library/GET_ITEM_SUMMARIES_SUCCESS';
 export const GET_ITEM_SUMMARIES_FAILURE = 'library/GET_ITEM_SUMMARIES_FAILURE';
 
+export const SEARCH_ITEM = 'library/SEARCH_ITEM';
+
 export const getItemSummariesAsync = createAsyncAction(
   GET_ITEM_SUMMARIES,
   GET_ITEM_SUMMARIES_SUCCESS,
   GET_ITEM_SUMMARIES_FAILURE,
 )<void, ItemSummary[], Error>();
 
-const actions = { getItemSummariesAsync };
+export const searchItem = createAction(SEARCH_ITEM)<string>();
+
+const actions = { getItemSummariesAsync, searchItem };
 type LibraryAction = ActionType<typeof actions>;
 
 function* getItemSummariesSaga() {
@@ -62,12 +71,14 @@ export type ItemSummary = {
 type LibraryState = {
   readyToSearch: boolean;
   itemSummaries: ItemSummary[];
+  searchResults: ItemSummary[];
   error: Error | null;
 };
 
 const initialState: LibraryState = {
   readyToSearch: false,
   itemSummaries: [],
+  searchResults: [],
   error: null,
 };
 
@@ -87,6 +98,12 @@ const library = createReducer<LibraryState, LibraryAction>(initialState, {
   [GET_ITEM_SUMMARIES_FAILURE]: (state, { payload: error }) => ({
     ...state,
     error: error,
+  }),
+  [SEARCH_ITEM]: (state, { payload: searchKeyword }) => ({
+    ...state,
+    searchResults: state.itemSummaries.filter(item =>
+      item.name.includes(searchKeyword),
+    ),
   }),
 });
 

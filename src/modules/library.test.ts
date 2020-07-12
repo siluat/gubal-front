@@ -1,4 +1,4 @@
-import { getItemSummariesAsync } from './library';
+import { getItemSummariesAsync, searchItem } from './library';
 import rootReducer, { rootSaga } from '.';
 import { wait } from '@testing-library/react';
 import createSagaMiddleware from 'redux-saga';
@@ -26,6 +26,7 @@ describe('library 액션 테스트', () => {
           equipLevel: 50,
         },
       ],
+      searchResults: [],
       error: null,
     };
     store.dispatch(getItemSummariesAsync.request());
@@ -52,6 +53,37 @@ describe('library 액션 테스트', () => {
       const { readyToSearch, error } = library;
       expect(readyToSearch).toBeFalsy();
       expect(error).not.toBeNull();
+    });
+  });
+
+  test('SEARCH_ITEM 액션', async () => {
+    store.dispatch(getItemSummariesAsync.request());
+    await wait(() => {
+      expect(store.getState().library.itemSummaries).toEqual([
+        {
+          id: 10057,
+          name: '롱기누스: 제타',
+          icon: '31887',
+          itemLevel: 135,
+          rarity: 4,
+          category: 5,
+          equipLevel: 50,
+        },
+      ]);
+    });
+    store.dispatch(searchItem('롱기누스'));
+    await wait(() => {
+      expect(store.getState().library.searchResults).toEqual([
+        {
+          id: 10057,
+          name: '롱기누스: 제타',
+          icon: '31887',
+          itemLevel: 135,
+          rarity: 4,
+          category: 5,
+          equipLevel: 50,
+        },
+      ]);
     });
   });
 });
