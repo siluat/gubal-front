@@ -85,5 +85,9 @@ describe('library 액션 테스트', () => {
         },
       ]);
     });
+    store.dispatch(searchItem(''));
+    await wait(() => {
+      expect(store.getState().library.searchResults).toEqual([]);
+    });
   });
 });

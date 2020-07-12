@@ -101,9 +101,10 @@ const library = createReducer<LibraryState, LibraryAction>(initialState, {
   }),
   [SEARCH_ITEM]: (state, { payload: searchKeyword }) => ({
     ...state,
-    searchResults: state.itemSummaries.filter(item =>
-      item.name.includes(searchKeyword),
-    ),
+    searchResults:
+      searchKeyword.length === 0
+        ? []
+        : state.itemSummaries.filter(item => item.name.includes(searchKeyword)),
   }),
 });
 
