@@ -2,7 +2,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Icon from '../Icon/Icon';
 
-function SearchInput() {
+type SearchInputProps = {
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+function SearchInput({ onChange }: SearchInputProps) {
   return (
     <SearchInputBlock>
       <Icon type="find" color={placeholderColor} />
@@ -10,6 +14,7 @@ function SearchInput() {
         aria-label="검색어"
         placeholder="검색어를 입력하세요"
         type="text"
+        onChange={onChange}
       />
     </SearchInputBlock>
   );

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import SearchInput from '../components/SearchInput/SearchInput';
 import styled from '@emotion/styled';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../modules';
 import JobIconMorph from '../components/JobIconMorph/JobIconMorph';
+import { searchItem } from '../modules/library';
+import ItemInline from '../components/ItemInline/ItemInline';
 
 const SearchPageBlock = styled.div`
   display: flex;
@@ -11,6 +13,7 @@ const SearchPageBlock = styled.div`
   .main-content {
     flex-grow: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
@@ -54,12 +57,35 @@ function GuideForSearch() {
 }
 
 function Search() {
-  const { readyToSearch } = useSelector((state: RootState) => state.library);
+  const { readyToSearch, searchResults } = useSelector(
+    (state: RootState) => state.library,
+  );
+
+  const dispatch = useDispatch();
+
+  const onInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const searchKeyword = e.currentTarget.value.trim();
+      dispatch(searchItem(searchKeyword));
+    },
+    [dispatch],
+  );
+
   return (
     <SearchPageBlock data-testid="search-page">
-      <SearchInput />
+      <SearchInput onChange={onInputChange} />
       <section className="main-content">
-        {readyToSearch ? <GuideForSearch /> : <ReadyToSearch />}
+        {readyToSearch ? (
+          searchResults.length === 0 ? (
+            <GuideForSearch />
+          ) : (
+            searchResults.map(result => (
+              <ItemInline item={result} key={result.id} />
+            ))
+          )
+        ) : (
+          <ReadyToSearch />
+        )}
       </section>
     </SearchPageBlock>
   );

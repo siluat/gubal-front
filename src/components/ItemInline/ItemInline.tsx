@@ -6,6 +6,7 @@ import { decodeIcon, decodeItemCategory } from '../../utils/decoder';
 const ItemInlineBlock = styled.div`
   display: flex;
   box-sizing: border-box;
+  width: 100%;
   height: 60px;
   border-bottom: 1px solid gray;
   .icon-column {
