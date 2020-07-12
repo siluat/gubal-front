@@ -4,7 +4,7 @@ import {
   createReducer,
   createAction,
 } from 'typesafe-actions';
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, debounce } from 'redux-saga/effects';
 import { getItemSummaries } from '../lib/api';
 
 export const GET_ITEM_SUMMARIES = 'library/GET_ITEM_SUMMARIES';
@@ -12,6 +12,7 @@ export const GET_ITEM_SUMMARIES_SUCCESS = 'library/GET_ITEM_SUMMARIES_SUCCESS';
 export const GET_ITEM_SUMMARIES_FAILURE = 'library/GET_ITEM_SUMMARIES_FAILURE';
 
 export const SEARCH_ITEM = 'library/SEARCH_ITEM';
+export const KEYWORD_CHANGED = 'library/KEYWORD_CHANGED';
 
 export const getItemSummariesAsync = createAsyncAction(
   GET_ITEM_SUMMARIES,
@@ -20,8 +21,9 @@ export const getItemSummariesAsync = createAsyncAction(
 )<void, ItemSummary[], Error>();
 
 export const searchItem = createAction(SEARCH_ITEM)<string>();
+export const keywordChanged = createAction(KEYWORD_CHANGED)<string>();
 
-const actions = { getItemSummariesAsync, searchItem };
+const actions = { getItemSummariesAsync, searchItem, keywordChanged };
 type LibraryAction = ActionType<typeof actions>;
 
 function* getItemSummariesSaga() {
@@ -44,8 +46,13 @@ function* getItemSummariesSaga() {
   }
 }
 
+function* searchItemSaga(action: { type: string; payload: string }) {
+  yield put(searchItem(action.payload));
+}
+
 export function* librarySaga() {
   yield takeEvery(GET_ITEM_SUMMARIES, getItemSummariesSaga);
+  yield debounce(200, KEYWORD_CHANGED, searchItemSaga);
 }
 
 export type ItemSummaryRaw = [

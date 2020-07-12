@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../modules';
 import JobIconMorph from '../components/JobIconMorph/JobIconMorph';
-import { searchItem } from '../modules/library';
+import { keywordChanged } from '../modules/library';
 import ItemInline from '../components/ItemInline/ItemInline';
 
 const SearchPageBlock = styled.div`
@@ -66,7 +66,7 @@ function Search() {
   const onInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const searchKeyword = e.currentTarget.value.trim();
-      dispatch(searchItem(searchKeyword));
+      dispatch(keywordChanged(searchKeyword));
     },
     [dispatch],
   );
