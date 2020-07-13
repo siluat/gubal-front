@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, wait } from '../../utils/test-utils';
+import { render, screen } from '../../utils/test-utils';
 import SearchResult from './SearchResult';
 import { ItemSummary } from '../../modules/library';
 

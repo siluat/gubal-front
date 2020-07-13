@@ -1,7 +1,6 @@
 import React from 'react';
 import ItemInline from './ItemInline';
 import { ItemSummary } from '../../modules/library';
-import { decodeIcon } from '../../utils/decoder';
 
 export default {
   component: ItemInline,
