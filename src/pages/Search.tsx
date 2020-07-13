@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../modules';
 import JobIconMorph from '../components/JobIconMorph/JobIconMorph';
 import { keywordChanged } from '../modules/library';
-import ItemInline from '../components/ItemInline/ItemInline';
+import SearchResult from '../components/SearchResult/SearchResult';
 
 const SearchPageBlock = styled.div`
   display: flex;
@@ -79,9 +79,7 @@ function Search() {
           searchResults.length === 0 ? (
             <GuideForSearch />
           ) : (
-            searchResults.map(result => (
-              <ItemInline item={result} key={result.id} />
-            ))
+            <SearchResult items={searchResults} />
           )
         ) : (
           <ReadyToSearch />
