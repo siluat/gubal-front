@@ -46,11 +46,12 @@ const ItemInlineBlock = styled.div`
 
 type ItemInlineProps = {
   item: ItemSummary;
+  style?: React.CSSProperties;
 };
 
 const baseUrl = 'https://gubal.s3.ap-northeast-2.amazonaws.com';
 
-function ItemInline({ item }: ItemInlineProps) {
+function ItemInline({ item, style }: ItemInlineProps) {
   const { name, icon, itemLevel, equipLevel, category } = item;
   const iconUrl = useMemo(() => `${baseUrl}${decodeIcon(icon)}`, [icon]);
   const { name: categoryName, icon: categoryIcon } = decodeItemCategory(
@@ -58,7 +59,7 @@ function ItemInline({ item }: ItemInlineProps) {
   );
   const categoryIconUrl = `${baseUrl}${categoryIcon}`;
   return (
-    <ItemInlineBlock>
+    <ItemInlineBlock style={style}>
       <div className="icon-column">
         <img className="icon" src={iconUrl} alt={`${name} 아이콘`} />
       </div>

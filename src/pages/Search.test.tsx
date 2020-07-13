@@ -25,6 +25,15 @@ describe('Search Page', () => {
     testStore.dispatch(
       getItemSummariesAsync.success([
         {
+          id: 1874,
+          name: '미완성 게 볼그',
+          icon: '31843',
+          itemLevel: 50,
+          rarity: 1,
+          category: 5,
+          equipLevel: 50,
+        },
+        {
           id: 10057,
           name: '롱기누스: 제타',
           icon: '31887',
@@ -42,10 +51,11 @@ describe('Search Page', () => {
     });
 
     const searchInput = screen.getByRole('textbox', { name: '검색어' });
-    userEvent.type(searchInput, '롱기누스');
+    userEvent.type(searchInput, '롱기누스: 제타');
 
     await wait(() => {
-      expect(screen.getByText(/롱기누스: 제타/i)).toBeInTheDocument();
+      expect(screen.getByText(/롱기누스/i)).toBeInTheDocument();
+      expect(screen.queryByText(/게 볼그/i)).not.toBeInTheDocument();
     });
   });
 });
