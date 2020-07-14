@@ -7,6 +7,7 @@ import { RootState } from '../modules';
 import JobIconMorph from '../components/JobIconMorph/JobIconMorph';
 import { keywordChanged } from '../modules/library';
 import SearchResult from '../components/SearchResult/SearchResult';
+import Footer from '../components/Footer/Footer';
 
 const SearchPageBlock = styled.div`
   display: flex;
@@ -36,6 +37,13 @@ const GuideForSearchBlock = styled.div`
     list-style: none;
     padding-inline-start: 0;
   }
+`;
+
+const FooterWapper = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-width: 320px;
 `;
 
 function ReadyToSearch() {
@@ -107,6 +115,11 @@ function Search() {
           <ReadyToSearch />
         )}
       </section>
+      {searchResults.length === 0 && (
+        <FooterWapper>
+          <Footer />
+        </FooterWapper>
+      )}
     </SearchPageBlock>
   );
 }
