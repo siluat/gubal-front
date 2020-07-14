@@ -1,50 +1,38 @@
 # gubal-front
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d4848bfd-4547-47a1-99d0-7fbc7888c657/deploy-status)](https://app.netlify.com/sites/gubal/deploys)
+
 [![Build Status](https://travis-ci.org/siluat/gubal-front.svg?branch=master)](https://travis-ci.org/siluat/gubal-front)
 [![Codecov](https://img.shields.io/codecov/c/github/siluat/gubal-front?token=27n9i6zc7m)](https://codecov.io/gh/siluat/gubal-front)
 
 파이널 판타지 14 한국 서비스용 게임 정보 검색 서비스
-## 설치 및 실행
 
-### 1. 필수 도구 설치
+## 🚩 목적
 
-실행을 위해 다음 프로그램의 설치가 필요합니다.
+- 파이널 판타지 14 게임을 하면서 필요한 편의성 도구를 직접 만든다.
+- 동일 목적의 공식 사이트, 타 사이트보다 사용하기 편하게 만든다.
+- TypeScript, React 환경, TDD에 대한 연습을 한다.
+- 사용 경험이 없는 기술을 사용해본다.
 
-- Git : https://git-scm.com/
-- Node.js : https://nodejs.org/ (아마도 최신 버전)
-- yarn
-  ```bash
-  npm install -g yarn
-  ```
+## 📋 규칙
 
-### 2. 코드 받기
+- TDD를 해보려고 노력한다.
+- 코드 커버리지 100%를 유지한다.
 
-Git 명령어나 기타 도구를 사용해 원하는 형태로 코드를 내려 받습니다.
+## ✨ 기능 목록
 
-```sh
-git clone https://github.com/siluat/gubal-front.git
-```
+- [ ] 아이템 검색
+  - [x] 아이템 이름에 검색어가 포함된 아이템을 검색할 수 있다.
+  - [ ] 아이템 이름의 초성으로 검색할 수 있다.
+- [ ] 아이템 상세 정보 출력
+  - [ ] 아이템의 기본 정보 출력
+  - [ ] 아이템의 획득 방법 출력
+- [ ] 지도 정보 조회
+- [ ] 채집 도우미
+- [ ] 낚시 도우미
 
-### 3. 의존 패키지 설치
+## 🙏 감사합니다
 
-프로젝트의 최상위 디렉토리에서 다음 명령어로 실행에 필요한 패키지를 설치합니다.
-
-```sh
-yarn install
-```
-
-### 4. 실행
-
-#### 웹 서비스 실행
-
-```sh
-yarn start
-```
-
-## 사용 기술
-
-코드를 이해하거나 수정하기 위해 다음 기술에 대한 지식이나 경험이 필요합니다.
-
-- [TypeScript](https://www.typescriptlang.org/)
-- [React](https://reactjs.org/)
-- [Emotion](https://emotion.sh/) (CSS-in-JS)
+- [SaintCoinach](https://github.com/ufx/SaintCoinach)
+- 액토즈소프트
+- Square Enix
