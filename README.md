@@ -31,6 +31,13 @@
 - [ ] 채집 도우미
 - [ ] 낚시 도우미
 
+## 주요 사용 기술
+
+- TypeScript
+- React, Emotion, Storybook, react-virtualized, react-spring
+- Redux, Redux-Saga, axios
+- Jest, React Testing Library
+
 ## 🙏 감사합니다
 
 - [SaintCoinach](https://github.com/ufx/SaintCoinach)
