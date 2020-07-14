@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import SearchInput from '../components/SearchInput/SearchInput';
 import styled from '@emotion/styled';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTransition, animated } from 'react-spring';
 import { RootState } from '../modules';
 import JobIconMorph from '../components/JobIconMorph/JobIconMorph';
 import { keywordChanged } from '../modules/library';
@@ -71,9 +72,30 @@ function Search() {
     [dispatch],
   );
 
+  const searchInputTransition = useTransition(readyToSearch, null, {
+    from: {
+      transform: `translateY(-100px)`,
+      opacity: 0,
+    },
+    enter: {
+      transform: `translateY(0px)`,
+      opacity: 1,
+    },
+    leave: {
+      transform: `translateY(-100px)`,
+      opacity: 0,
+    },
+  });
+
   return (
     <SearchPageBlock data-testid="search-page">
-      <SearchInput onChange={onInputChange} />
+      {searchInputTransition.map(({ item, key, props }) =>
+        item ? (
+          <animated.div key={key} style={props}>
+            <SearchInput onChange={onInputChange} />
+          </animated.div>
+        ) : null,
+      )}
       <section className="main-content">
         {readyToSearch ? (
           searchResults.length === 0 ? (
