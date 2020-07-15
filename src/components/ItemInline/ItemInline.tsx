@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
 import { ItemSummary } from '../../modules/library';
 import { decodeIcon, decodeItemCategory } from '../../utils/decoder';
+import colors from '../../styles/colors';
 
 const ItemInlineBlock = styled.div`
   display: flex;
@@ -22,16 +23,19 @@ const ItemInlineBlock = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    .name {
-      font-size: 0.9rem;
-      margin: 0.1rem 0;
-    }
     .level {
-      font-size: 0.7rem;
-      display: flex;
-      margin: 0.1rem 0;
+      font-size: 0.75rem;
+      margin: 0.05rem 0;
+      dt,
       dd {
-        margin: 0 1rem;
+        display: inline-block;
+      }
+      dt {
+        color: ${colors.highlight};
+      }
+      dd {
+        width: 30px;
+        margin: 0 0.5rem;
       }
     }
   }
@@ -44,6 +48,17 @@ const ItemInlineBlock = styled.div`
   }
 `;
 
+type ItemNameProps = {
+  color?: string;
+};
+
+const ItemName = styled('p')`
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0.1rem 0;
+  color: ${(props: ItemNameProps) => props.color};
+`;
+
 type ItemInlineProps = {
   item: ItemSummary;
   style?: React.CSSProperties;
@@ -52,7 +67,7 @@ type ItemInlineProps = {
 const baseUrl = 'https://gubal.s3.ap-northeast-2.amazonaws.com';
 
 function ItemInline({ item, style }: ItemInlineProps) {
-  const { name, icon, itemLevel, equipLevel, category } = item;
+  const { name, icon, itemLevel, equipLevel, category, rarity } = item;
   const iconUrl = useMemo(() => `${baseUrl}${decodeIcon(icon)}`, [icon]);
   const { name: categoryName, icon: categoryIcon } = decodeItemCategory(
     category,
@@ -64,7 +79,7 @@ function ItemInline({ item, style }: ItemInlineProps) {
         <img className="icon" src={iconUrl} alt={`${name} 아이콘`} />
       </div>
       <div className="description-column">
-        <p className="name">{name}</p>
+        <ItemName color={colors.rarity[rarity]}>{name}</ItemName>
         <dl className="level">
           <dt>착용 레벨</dt>
           <dd>{equipLevel}</dd>
