@@ -11,6 +11,7 @@ const FooterBlock = styled.footer`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-sizing: border-box;
   p {
     margin: 0.1rem 0;
   }
