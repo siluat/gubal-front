@@ -6,9 +6,7 @@ import App, { AppRoute } from './App';
 test('렌더링', async () => {
   render(<App />);
 
-  await wait(() =>
-    expect(screen.getByTestId('search-page')).toBeInTheDocument(),
-  );
+  expect(screen.getByTestId('search-page')).toBeInTheDocument();
 });
 
 test('route /search', async () => {
@@ -18,7 +16,5 @@ test('route /search', async () => {
     </MemoryRouter>,
   );
 
-  await wait(() =>
-    expect(screen.getByTestId('search-page')).toBeInTheDocument(),
-  );
+  expect(screen.getByTestId('search-page')).toBeInTheDocument();
 });
