@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, wait } from '../utils/test-utils';
+import { render, screen, waitFor } from '../utils/test-utils';
 import userEvent from '@testing-library/user-event';
 import Search from './Search';
 import createSagaMiddleware from 'redux-saga';
@@ -45,7 +45,7 @@ describe('Search Page', () => {
       ]),
     );
 
-    await wait(() => {
+    await waitFor(() => {
       expect(
         screen.getByRole('textbox', { name: '검색어' }),
       ).toBeInTheDocument();
@@ -80,14 +80,14 @@ describe('Search Page', () => {
 
     render(<Search />, { store });
 
-    await wait(() => {
+    await waitFor(() => {
       expect(screen.queryByTestId('ready-to-search')).not.toBeInTheDocument();
     });
 
     const searchInput = screen.getByRole('textbox', { name: '검색어' });
     userEvent.type(searchInput, '롱기누스: 제타');
 
-    await wait(() => {
+    await waitFor(() => {
       expect(screen.getByText(/롱기누스/i)).toBeInTheDocument();
       expect(screen.queryByText(/게 볼그/i)).not.toBeInTheDocument();
     });

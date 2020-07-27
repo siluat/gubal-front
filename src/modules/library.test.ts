@@ -1,6 +1,6 @@
 import { getItemSummariesAsync, searchItem } from './library';
 import rootReducer, { rootSaga } from '.';
-import { wait } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
 import { rest } from 'msw';
@@ -30,7 +30,7 @@ describe('library 액션 테스트', () => {
       error: null,
     };
     store.dispatch(getItemSummariesAsync.request());
-    await wait(() => {
+    await waitFor(() => {
       const { library } = store.getState();
       expect(library).toEqual(expectLibrary);
     });
@@ -48,7 +48,7 @@ describe('library 액션 테스트', () => {
       }),
     );
     store.dispatch(getItemSummariesAsync.request());
-    await wait(() => {
+    await waitFor(() => {
       const { library } = store.getState();
       const { readyToSearch, error } = library;
       expect(readyToSearch).toBeFalsy();
@@ -58,7 +58,7 @@ describe('library 액션 테스트', () => {
 
   test('SEARCH_ITEM 액션', async () => {
     store.dispatch(getItemSummariesAsync.request());
-    await wait(() => {
+    await waitFor(() => {
       expect(store.getState().library.itemSummaries).toEqual([
         {
           id: 10057,
@@ -72,7 +72,7 @@ describe('library 액션 테스트', () => {
       ]);
     });
     store.dispatch(searchItem('롱기누스'));
-    await wait(() => {
+    await waitFor(() => {
       expect(store.getState().library.searchResults).toEqual([
         {
           id: 10057,
@@ -86,7 +86,7 @@ describe('library 액션 테스트', () => {
       ]);
     });
     store.dispatch(searchItem(''));
-    await wait(() => {
+    await waitFor(() => {
       expect(store.getState().library.searchResults).toEqual([]);
     });
   });
