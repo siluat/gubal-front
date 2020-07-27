@@ -6,6 +6,7 @@ import {
 } from 'typesafe-actions';
 import { call, put, takeEvery, debounce } from 'redux-saga/effects';
 import { getItemSummaries } from '../lib/api';
+import { ItemRarity } from '../types/ItemRairity';
 
 export const GET_ITEM_SUMMARIES = 'library/GET_ITEM_SUMMARIES';
 export const GET_ITEM_SUMMARIES_SUCCESS = 'library/GET_ITEM_SUMMARIES_SUCCESS';
@@ -70,7 +71,7 @@ export type ItemSummary = {
   name: string;
   icon: string;
   itemLevel: number;
-  rarity: number;
+  rarity: ItemRarity;
   category: number;
   equipLevel: number;
 };

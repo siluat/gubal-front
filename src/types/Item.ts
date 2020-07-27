@@ -1,4 +1,5 @@
 import { ItemUICategory } from './ItemUICategory';
+import { ItemRarity } from './ItemRairity';
 
 export type Item = {
   id: number;
@@ -6,7 +7,7 @@ export type Item = {
   name: string;
   icon: string;
   itemLevel: number;
-  rarity: number;
+  rarity: ItemRarity;
   itemUICategory: ItemUICategory;
   stackSize: number;
   isUnique: boolean;

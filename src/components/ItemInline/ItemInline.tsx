@@ -4,6 +4,7 @@ import { ItemSummary } from '../../modules/library';
 import { decodeItemCategory } from '../../utils/decoder';
 import colors from '../../styles/colors';
 import ItemIcon from '../ItemIcon/ItemIcon';
+import ItemName from '../ItemName/ItemName';
 
 const ItemInlineBlock = styled.div`
   display: flex;
@@ -20,6 +21,11 @@ const ItemInlineBlock = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    .item-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin: 0.1rem 0;
+    }
     .level {
       font-size: 0.75rem;
       margin: 0.05rem 0;
@@ -45,17 +51,6 @@ const ItemInlineBlock = styled.div`
   }
 `;
 
-type ItemNameProps = {
-  color?: string;
-};
-
-const ItemName = styled('p')`
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin: 0.1rem 0;
-  color: ${(props: ItemNameProps) => props.color};
-`;
-
 type ItemInlineProps = {
   item: ItemSummary;
   style?: React.CSSProperties;
@@ -75,7 +70,9 @@ function ItemInline({ item, style }: ItemInlineProps) {
         <ItemIcon size="small" code={icon} itemName={name} />
       </div>
       <div className="description-column">
-        <ItemName color={colors.rarity[rarity]}>{name}</ItemName>
+        <ItemName className="item-name" rarity={rarity}>
+          {name}
+        </ItemName>
         <dl className="level">
           <dt>착용 레벨</dt>
           <dd>{equipLevel}</dd>
