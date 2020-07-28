@@ -71,5 +71,5 @@ export type Item = {
   materiaSlotCount: number;
   isAdvancedMeldingPermitted: boolean;
   isPvP: boolean;
-  isGramourous: boolean;
+  isGlamourous: boolean;
 };

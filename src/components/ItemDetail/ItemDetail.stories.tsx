@@ -13,10 +13,17 @@ export default {
 export const itemDetail = () => {
   const isUnique = boolean('고유 여부', true);
   const isUntradable = boolean('거래 불가 여부', true);
+  const isCrestWorthy = boolean('문장 장식 가능 여부', false);
+  const isGlamourous = boolean('환상의 옷장 보관 가능 여부', false);
+  const isCollectable = boolean('추억의 보관함 보관 가능 여부', false);
+
   const item: Item = {
     ...testItem,
-    isUnique: isUnique,
-    isUntradable: isUntradable,
+    isUnique,
+    isUntradable,
+    isCrestWorthy,
+    isGlamourous,
+    isCollectable,
   };
 
   return <ItemDetail item={item} />;

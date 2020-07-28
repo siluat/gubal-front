@@ -24,9 +24,14 @@ const ItemDetailBlock = styled.div`
     font-size: 16px;
     display: flex;
     flex-direction: column;
+
+    div,
+    p {
+      margin-bottom: 0.25rem;
+    }
+
     .uniqueness-tradable {
       font-size: 0.75rem;
-      margin-bottom: 0.25rem;
       color: ${colors.darkText};
       span + span {
         margin-left: 0.5rem;
@@ -34,6 +39,15 @@ const ItemDetailBlock = styled.div`
     }
     .item-name {
       font-weight: bold;
+    }
+    .category-name {
+      font-size: 0.875rem;
+    }
+    .storage-information {
+      img {
+        width: 16px;
+        height: 16px;
+      }
     }
   }
 `;
@@ -43,7 +57,17 @@ export type ItemDetailProps = {
 };
 
 function ItemDetail({ item }: ItemDetailProps) {
-  const { icon, name, rarity, isUnique, isUntradable } = item;
+  const {
+    icon,
+    name,
+    rarity,
+    isUnique,
+    isUntradable,
+    isCrestWorthy,
+    isGlamourous,
+    isCollectable,
+  } = item;
+  const categoryName = item.itemUICategory.name;
   return (
     <ItemDetailBlock>
       <div className="icon">
@@ -57,6 +81,48 @@ function ItemDetail({ item }: ItemDetailProps) {
         <ItemName className="item-name" rarity={rarity}>
           {name}
         </ItemName>
+        <div className="category-name">{categoryName}</div>
+        <div className="storage-information">
+          {isCrestWorthy ? (
+            <img
+              src="/images/crest_worthy.png"
+              alt="문장 장식 가능"
+              title="문장 장식 가능"
+            />
+          ) : (
+            <img
+              src="/images/not_crest_worthy.png"
+              alt="문장 장식 불가"
+              title="문장 장식 불가"
+            />
+          )}
+          {isGlamourous ? (
+            <img
+              src="/images/glamourous.png"
+              alt="환상의 옷장 보관 가능"
+              title="환상의 옷장 보관 가능"
+            />
+          ) : (
+            <img
+              src="/images/not_glamourous.png"
+              alt="환상의 옷장 보관 불가"
+              title="환상의 옷장 보관 불가"
+            />
+          )}
+          {isCollectable ? (
+            <img
+              src="/images/collectable.png"
+              alt="추억의 보관함 보관 가능"
+              title="추억의 보관함 보관 가능"
+            />
+          ) : (
+            <img
+              src="/images/not_collectable.png"
+              alt="추억의 보관함 보관 불가"
+              title="추억의 보관함 보관 불가"
+            />
+          )}
+        </div>
       </div>
     </ItemDetailBlock>
   );
