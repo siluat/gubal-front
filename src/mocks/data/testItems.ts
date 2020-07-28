@@ -1,6 +1,6 @@
 import { Item } from '../../types/Item';
 
-const testItem: Item = {
+export const testItem: Item = {
   id: 28292,
   description: '',
   name: '절 롱고미안트',
@@ -79,4 +79,22 @@ const testItem: Item = {
   isGramourous: false,
 };
 
-export default testItem;
+export const uniqueItem: Item = {
+  ...testItem,
+  isUnique: true,
+};
+
+export const notUniqueItem: Item = {
+  ...testItem,
+  isUnique: false,
+};
+
+export const tradableItem: Item = {
+  ...testItem,
+  isUntradable: false,
+};
+
+export const untradableItem: Item = {
+  ...testItem,
+  isUntradable: true,
+};
