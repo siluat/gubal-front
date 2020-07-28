@@ -76,7 +76,7 @@ export const testItem: Item = {
   materiaSlotCount: 3,
   isAdvancedMeldingPermitted: false,
   isPvP: false,
-  isGramourous: false,
+  isGlamourous: false,
 };
 
 export const uniqueItem: Item = {
