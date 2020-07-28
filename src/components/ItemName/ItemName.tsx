@@ -7,6 +7,7 @@ export type ItemNameProps = {
 };
 
 const ItemName = styled('p')`
+  margin: 0;
   color: ${(props: ItemNameProps) => colors.rarity[props.rarity]};
 `;
 
