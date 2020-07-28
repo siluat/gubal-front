@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ItemDetail from './ItemDetail';
-import { testItem } from './ItemDetail.stories';
+import testItem from '../../mocks/data/testItem';
 
 describe('ItemDetail', () => {
   test('기본 렌더링', () => {
