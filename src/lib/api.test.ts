@@ -1,4 +1,5 @@
 import { getItemSummaries, getItemDetail } from './api';
+import { Item } from '../types/Item';
 
 test('getItemSummaries', async () => {
   const expectData = [[10057, '롱기누스: 제타', '31887', 135, 4, 5, 50]];
@@ -7,7 +8,7 @@ test('getItemSummaries', async () => {
 });
 
 test('getItemDetail', async () => {
-  const expectData = {
+  const expectData: Item = {
     id: 28292,
     description: '',
     name: '절 롱고미안트',
@@ -83,7 +84,7 @@ test('getItemDetail', async () => {
     materiaSlotCount: 3,
     isAdvancedMeldingPermitted: false,
     isPvP: false,
-    isGramourous: false,
+    isGlamourous: false,
   };
 
   const { data } = await getItemDetail(28292);
