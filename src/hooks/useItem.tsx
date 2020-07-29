@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Item } from '../../types/Item';
-import { getItemDetail } from '../../lib/api';
+import { Item } from '../types/Item';
+import { getItemDetail } from '../lib/api';
 
 function useItem(id: number) {
   const [loading, setLoading] = useState<boolean>(true);
