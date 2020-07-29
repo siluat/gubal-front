@@ -6,11 +6,8 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@siluat/flubber": "^0.4.2",
-    "@testing-library/jest-dom": "^5.11.1",
-    "@testing-library/react": "^10.4.7",
-    "@testing-library/user-event": "^12.0.15",
     "@types/jest": "^26.0.7",
-    "@types/node": "^14.0.26",
+    "@types/node": "^14.0.27",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.9",
@@ -64,8 +61,13 @@
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.0.0",
     "@storybook/react": "^5.3.19",
+    "@testing-library/jest-dom": "^5.11.2",
+    "@testing-library/react": "^10.4.7",
+    "@testing-library/react-hooks": "^3.4.1",
+    "@testing-library/user-event": "^12.0.17",
     "@types/react-router-dom": "^5.1.5",
-    "msw": "^0.19.5"
+    "msw": "^0.19.5",
+    "react-test-renderer": "^16.13.1"
   },
   "jest": {
     "collectCoverageFrom": [
