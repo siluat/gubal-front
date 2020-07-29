@@ -1,6 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
 import useItem from './useItem';
-import { notDeepEqual } from 'assert';
 
 describe('useItem', () => {
   test('loading, item, error를 반환한다', async () => {
