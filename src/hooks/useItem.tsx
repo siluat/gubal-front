@@ -8,18 +8,24 @@ function useItem(id: number) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    let isCancel = false;
+
     const fetchItem = async () => {
       try {
         const { data } = await getItemDetail(id);
-        setItem(data);
+        !isCancel && setItem(data);
       } catch (error) {
-        setError(error);
+        !isCancel && setError(error);
       } finally {
-        setLoading(false);
+        !isCancel && setLoading(false);
       }
     };
 
     fetchItem();
+
+    return () => {
+      isCancel = true;
+    };
   }, [id]);
 
   return { loading, item, error };
