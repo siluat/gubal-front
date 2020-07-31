@@ -4,6 +4,7 @@ import { ItemSummary } from '../../modules/library';
 import ItemInline from '../ItemInline/ItemInline';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import colors from '../../styles/colors';
 
 const SearchResultBlock = styled.div`
   flex-grow: 1;
@@ -12,6 +13,11 @@ const SearchResultBlock = styled.div`
   .ReactVirtualized__List {
     outline: none;
   }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: ${colors.text};
 `;
 
 type SearchResultProps = {
@@ -24,9 +30,9 @@ function SearchResult({ items }: SearchResultProps) {
       const item = items[index];
       const link = `/item/${item.id}`;
       return (
-        <Link to={link} key={key} style={style}>
+        <StyledLink to={link} key={key} style={style}>
           <ItemInline item={item} />
-        </Link>
+        </StyledLink>
       );
     },
     [items],
