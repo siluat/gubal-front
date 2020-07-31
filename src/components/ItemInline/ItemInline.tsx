@@ -5,6 +5,7 @@ import { decodeItemCategory } from '../../utils/decoder';
 import colors from '../../styles/colors';
 import ItemIcon from '../ItemIcon/ItemIcon';
 import ItemName from '../ItemName/ItemName';
+import { EquippableCategoryList } from '../../utils/codeMap';
 
 const ItemInlineBlock = styled.div`
   display: flex;
@@ -73,12 +74,14 @@ function ItemInline({ item, style }: ItemInlineProps) {
         <ItemName className="item-name" rarity={rarity}>
           {name}
         </ItemName>
-        <dl className="level">
-          <dt>착용 레벨</dt>
-          <dd>{equipLevel}</dd>
-          <dt>아이템 레벨</dt>
-          <dd>{itemLevel}</dd>
-        </dl>
+        {EquippableCategoryList.includes(categoryName) && (
+          <dl className="level">
+            <dt>착용 레벨</dt>
+            <dd>{equipLevel}</dd>
+            <dt>아이템 레벨</dt>
+            <dd>{itemLevel}</dd>
+          </dl>
+        )}
       </div>
       <div className="category-column">
         <img src={categoryIconUrl} alt={categoryName} />
