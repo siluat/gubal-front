@@ -14,7 +14,7 @@ export interface IconProps {
 function Icon({ type, color = 'black', size = '24px', className }: IconProps) {
   const SVG = svgs[type];
   return (
-    <SVG fill={color} width={size} height="auto" className={className}>
+    <SVG fill={color} width={size} height={size} className={className}>
       <title>{type}</title>
     </SVG>
   );
