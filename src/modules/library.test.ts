@@ -25,6 +25,15 @@ describe('library 액션 테스트', () => {
           category: 5,
           equipLevel: 50,
         },
+        {
+          id: 28292,
+          name: '절 롱고미안트',
+          icon: '31993',
+          itemLevel: 475,
+          rarity: 3,
+          category: 5,
+          equipLevel: 80,
+        },
       ],
       searchResults: [],
       error: null,
@@ -68,6 +77,15 @@ describe('library 액션 테스트', () => {
           rarity: 4,
           category: 5,
           equipLevel: 50,
+        },
+        {
+          id: 28292,
+          name: '절 롱고미안트',
+          icon: '31993',
+          itemLevel: 475,
+          rarity: 3,
+          category: 5,
+          equipLevel: 80,
         },
       ]);
     });
