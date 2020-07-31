@@ -3,6 +3,7 @@ import { AutoSizer, List } from 'react-virtualized';
 import { ItemSummary } from '../../modules/library';
 import ItemInline from '../ItemInline/ItemInline';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 const SearchResultBlock = styled.div`
   flex-grow: 1;
@@ -21,7 +22,12 @@ function SearchResult({ items }: SearchResultProps) {
   const rowRenderer = useCallback(
     ({ index, key, style }) => {
       const item = items[index];
-      return <ItemInline item={item} key={key} style={style} />;
+      const link = `/item/${item.id}`;
+      return (
+        <Link to={link} key={key} style={style}>
+          <ItemInline item={item} />
+        </Link>
+      );
     },
     [items],
   );
