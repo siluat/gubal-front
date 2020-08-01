@@ -4,11 +4,13 @@ import styled from '@emotion/styled';
 import ItemIcon from '../ItemIcon/ItemIcon';
 import ItemName from '../ItemName/ItemName';
 import colors from '../../styles/colors';
+import { EquippableCategoryList } from '../../utils/codeMap';
 
 const ItemDetailBlock = styled.div`
   display: grid;
   grid-template:
-    'icon base-information' 30px
+    'icon base-information'
+    'item-level item-level'
     / 100px 1fr;
 
   padding-top: 1rem;
@@ -50,6 +52,14 @@ const ItemDetailBlock = styled.div`
       }
     }
   }
+
+  .item-level {
+    grid-area: item-level;
+    margin-top: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background-color: ${colors.darkBackground};
+    font-size: 0.875rem;
+  }
 `;
 
 export type ItemDetailProps = {
@@ -66,6 +76,7 @@ function ItemDetail({ item }: ItemDetailProps) {
     isCrestWorthy,
     isGlamourous,
     isCollectable,
+    itemLevel,
   } = item;
   const categoryName = item.itemUICategory.name;
   return (
@@ -124,6 +135,9 @@ function ItemDetail({ item }: ItemDetailProps) {
           )}
         </div>
       </div>
+      {EquippableCategoryList.includes(categoryName) && (
+        <div className="item-level">아이템 레벨 {itemLevel}</div>
+      )}
     </ItemDetailBlock>
   );
 }

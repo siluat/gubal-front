@@ -7,6 +7,7 @@ import {
   notUniqueItem,
   untradableItem,
   tradableItem,
+  potion,
 } from '../../mocks/data/testItems';
 import { Item } from '../../types/Item';
 
@@ -99,5 +100,15 @@ describe('ItemDetail', () => {
     };
     render(<ItemDetail item={item} />);
     expect(screen.getByAltText('추억의 보관함 보관 불가')).toBeInTheDocument();
+  });
+
+  test(`아이템 카테고리에 따라 아이템 레벨을 표시한다`, () => {
+    render(<ItemDetail item={testItem} />);
+    expect(screen.getByText(/아이템 레벨/i)).toBeInTheDocument();
+  });
+
+  test(`아이템 카테고리에 따라 아이템 레벨을 표시하지 않는다`, () => {
+    render(<ItemDetail item={potion} />);
+    expect(screen.queryByText(/아이템 레벨/i)).not.toBeInTheDocument();
   });
 });
