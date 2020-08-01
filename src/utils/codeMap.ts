@@ -166,3 +166,5 @@ export const EquippableCategoryList: Array<string> = [
   '건블레이드',
   '투척무기',
 ];
+
+export const PhysicalArmList = ['격투무기'];

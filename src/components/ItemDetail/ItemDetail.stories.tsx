@@ -1,7 +1,7 @@
 import React from 'react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import ItemDetail from './ItemDetail';
-import { testItem } from '../../mocks/data/testItems';
+import { testItem, pugilistArm } from '../../mocks/data/testItems';
 import { Item } from '../../types/Item';
 
 export default {
@@ -28,7 +28,8 @@ export const itemDetail = () => {
 
   return <ItemDetail item={item} />;
 };
-
 itemDetail.story = {
   name: 'Default',
 };
+
+export const 격투무기 = () => <ItemDetail item={pugilistArm} />;

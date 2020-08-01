@@ -4,13 +4,14 @@ import styled from '@emotion/styled';
 import ItemIcon from '../ItemIcon/ItemIcon';
 import ItemName from '../ItemName/ItemName';
 import colors from '../../styles/colors';
-import { EquippableCategoryList } from '../../utils/codeMap';
+import { EquippableCategoryList, PhysicalArmList } from '../../utils/codeMap';
 
 const ItemDetailBlock = styled.div`
   display: grid;
   grid-template:
     'icon base-information'
     'item-level item-level'
+    'physical-spec physical-spec'
     / 100px 1fr;
 
   padding-top: 1rem;
@@ -60,6 +61,26 @@ const ItemDetailBlock = styled.div`
     background-color: ${colors.darkBackground};
     font-size: 0.875rem;
   }
+
+  .physical-spec {
+    grid-area: physical-spec;
+    padding: 0 1.2rem;
+    div {
+      display: flex;
+      justify-content: space-between;
+      dt,
+      dd {
+        display: inline-block;
+        font-size: 0.875rem;
+      }
+      dt {
+        color: ${colors.highlight};
+      }
+    }
+    div + div {
+      margin-top: 0.3rem;
+    }
+  }
 `;
 
 export type ItemDetailProps = {
@@ -77,6 +98,8 @@ function ItemDetail({ item }: ItemDetailProps) {
     isGlamourous,
     isCollectable,
     itemLevel,
+    physDamage,
+    delay,
   } = item;
   const categoryName = item.itemUICategory.name;
   return (
@@ -137,6 +160,24 @@ function ItemDetail({ item }: ItemDetailProps) {
       </div>
       {EquippableCategoryList.includes(categoryName) && (
         <div className="item-level">아이템 레벨 {itemLevel}</div>
+      )}
+      {PhysicalArmList.includes(categoryName) && (
+        <div className="physical-spec">
+          <dl>
+            <div>
+              <dt>물리 기본 성능</dt>
+              <dd>{physDamage}</dd>
+            </div>
+            <div>
+              <dt>물리 자동 공격</dt>
+              <dd>{Math.floor((delay / 10 / 3) * physDamage) / 100}</dd>
+            </div>
+            <div>
+              <dt>공격 주기</dt>
+              <dd>{delay / 1000}</dd>
+            </div>
+          </dl>
+        </div>
       )}
     </ItemDetailBlock>
   );

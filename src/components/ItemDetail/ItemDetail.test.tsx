@@ -8,6 +8,7 @@ import {
   untradableItem,
   tradableItem,
   potion,
+  pugilistArm,
 } from '../../mocks/data/testItems';
 import { Item } from '../../types/Item';
 
@@ -110,5 +111,12 @@ describe('ItemDetail', () => {
   test(`아이템 카테고리에 따라 아이템 레벨을 표시하지 않는다`, () => {
     render(<ItemDetail item={potion} />);
     expect(screen.queryByText(/아이템 레벨/i)).not.toBeInTheDocument();
+  });
+
+  test(`격투무기일 경우 물리 성능 표시`, () => {
+    render(<ItemDetail item={pugilistArm} />);
+    expect(screen.getByText(/물리 기본 성능/i)).toBeInTheDocument();
+    expect(screen.getByText(/물리 자동 공격/i)).toBeInTheDocument();
+    expect(screen.getByText(/공격 주기/i)).toBeInTheDocument();
   });
 });
