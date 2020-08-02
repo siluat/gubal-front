@@ -4,10 +4,11 @@ import styled from '@emotion/styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTransition, animated } from 'react-spring';
 import { RootState } from '../modules';
-import JobIconMorph from '../components/JobIconMorph/JobIconMorph';
 import { keywordChanged } from '../modules/library';
 import SearchResult from '../components/SearchResult/SearchResult';
 import Footer from '../components/Footer/Footer';
+import ReadyingMessage from '../components/ReadyingMessage';
+import GuideForSearch from '../components/GuideForSearch';
 
 const SearchPageBlock = styled.div`
   display: flex;
@@ -21,49 +22,12 @@ const SearchPageBlock = styled.div`
   }
 `;
 
-const ReadyingMessageBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 30vh;
-  p {
-    color: #bbac94;
-  }
-`;
-
-const GuideForSearchBlock = styled.div`
-  padding-top: 30vh;
-  ul {
-    list-style: none;
-    padding-inline-start: 0;
-  }
-`;
-
 const FooterWrapper = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
   min-width: 320px;
 `;
-
-function ReadyingMessage() {
-  return (
-    <ReadyingMessageBlock data-testid="readying-message">
-      <JobIconMorph />
-      <p>검색에 필요한 데이터를 준비 중</p>
-    </ReadyingMessageBlock>
-  );
-}
-
-function GuideForSearch() {
-  return (
-    <GuideForSearchBlock>
-      <ul>
-        <li>아이템 정보를 검색할 수 있습니다.</li>
-      </ul>
-    </GuideForSearchBlock>
-  );
-}
 
 function Search() {
   const { readyToSearch, searchResults } = useSelector(
