@@ -1,4 +1,4 @@
-import { getItemSummariesAsync, searchItem } from './library';
+import { getItemSummariesAsync, searchItem, focusingItem } from './library';
 import rootReducer, { rootSaga } from '.';
 import { waitFor } from '@testing-library/react';
 import createSagaMiddleware from 'redux-saga';
@@ -36,6 +36,7 @@ describe('library 액션 테스트', () => {
         },
       ],
       searchResults: [],
+      focusedItemId: null,
       error: null,
     };
     store.dispatch(getItemSummariesAsync.request());
@@ -106,6 +107,14 @@ describe('library 액션 테스트', () => {
     store.dispatch(searchItem(''));
     await waitFor(() => {
       expect(store.getState().library.searchResults).toEqual([]);
+    });
+  });
+
+  test(`FOCUSING_ITEM 액션 발생`, async () => {
+    const id = 21333;
+    store.dispatch(focusingItem(id));
+    await waitFor(() => {
+      expect(store.getState().library.focusedItemId).toEqual(id);
     });
   });
 });

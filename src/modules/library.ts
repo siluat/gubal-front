@@ -8,12 +8,18 @@ import { call, put, takeEvery, debounce } from 'redux-saga/effects';
 import { getItemSummaries } from '../lib/api';
 import { ItemRarity } from '../types/ItemRairity';
 
+/**
+ * Actions and Action Creators
+ */
+
 export const GET_ITEM_SUMMARIES = 'library/GET_ITEM_SUMMARIES';
 export const GET_ITEM_SUMMARIES_SUCCESS = 'library/GET_ITEM_SUMMARIES_SUCCESS';
 export const GET_ITEM_SUMMARIES_FAILURE = 'library/GET_ITEM_SUMMARIES_FAILURE';
 
 export const SEARCH_ITEM = 'library/SEARCH_ITEM';
 export const KEYWORD_CHANGED = 'library/KEYWORD_CHANGED';
+
+export const FOCUSING_ITEM = 'library/FOCUSING_ITEM';
 
 export const getItemSummariesAsync = createAsyncAction(
   GET_ITEM_SUMMARIES,
@@ -24,8 +30,19 @@ export const getItemSummariesAsync = createAsyncAction(
 export const searchItem = createAction(SEARCH_ITEM)<string>();
 export const keywordChanged = createAction(KEYWORD_CHANGED)<string>();
 
-const actions = { getItemSummariesAsync, searchItem, keywordChanged };
+export const focusingItem = createAction(FOCUSING_ITEM)<number>();
+
+const actions = {
+  getItemSummariesAsync,
+  searchItem,
+  keywordChanged,
+  focusingItem,
+};
 type LibraryAction = ActionType<typeof actions>;
+
+/**
+ * Sagas
+ */
 
 function* getItemSummariesSaga() {
   try {
@@ -56,6 +73,10 @@ export function* librarySaga() {
   yield debounce(200, KEYWORD_CHANGED, searchItemSaga);
 }
 
+/**
+ * Reducer
+ */
+
 export type ItemSummaryRaw = [
   number,
   string,
@@ -80,6 +101,7 @@ type LibraryState = {
   readyToSearch: boolean;
   itemSummaries: ItemSummary[];
   searchResults: ItemSummary[];
+  focusedItemId: number | null;
   error: Error | null;
 };
 
@@ -87,6 +109,7 @@ const initialState: LibraryState = {
   readyToSearch: false,
   itemSummaries: [],
   searchResults: [],
+  focusedItemId: null,
   error: null,
 };
 
@@ -109,10 +132,15 @@ const library = createReducer<LibraryState, LibraryAction>(initialState, {
   }),
   [SEARCH_ITEM]: (state, { payload: searchKeyword }) => ({
     ...state,
+    focusedItemId: null,
     searchResults:
       searchKeyword.length === 0
         ? []
         : state.itemSummaries.filter(item => item.name.includes(searchKeyword)),
+  }),
+  [FOCUSING_ITEM]: (state, { payload: id }) => ({
+    ...state,
+    focusedItemId: id,
   }),
 });
 
