@@ -19,7 +19,7 @@ describe('Search Page', () => {
 
     render(<Search />, { store });
 
-    expect(screen.getByTestId('ready-to-search')).toBeInTheDocument();
+    expect(screen.getByTestId('readying-message')).toBeInTheDocument();
 
     store.dispatch(
       getItemSummariesAsync.success([

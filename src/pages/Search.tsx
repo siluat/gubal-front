@@ -21,7 +21,7 @@ const SearchPageBlock = styled.div`
   }
 `;
 
-const ReadyToSearchBlock = styled.div`
+const ReadyingMessageBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,12 +46,12 @@ const FooterWrapper = styled.div`
   min-width: 320px;
 `;
 
-function ReadyToSearch() {
+function ReadyingMessage() {
   return (
-    <ReadyToSearchBlock data-testid="ready-to-search">
+    <ReadyingMessageBlock data-testid="readying-message">
       <JobIconMorph />
       <p>검색에 필요한 데이터를 준비 중</p>
-    </ReadyToSearchBlock>
+    </ReadyingMessageBlock>
   );
 }
 
@@ -105,14 +105,10 @@ function Search() {
         ) : null,
       )}
       <section className="main-content">
-        {readyToSearch ? (
-          searchResults.length === 0 ? (
-            <GuideForSearch />
-          ) : (
-            <SearchResult items={searchResults} />
-          )
-        ) : (
-          <ReadyToSearch />
+        {!readyToSearch && <ReadyingMessage />}
+        {readyToSearch && searchResults.length === 0 && <GuideForSearch />}
+        {readyToSearch && searchResults.length !== 0 && (
+          <SearchResult items={searchResults} />
         )}
       </section>
       {searchResults.length === 0 && (
