@@ -39,7 +39,7 @@ const GuideForSearchBlock = styled.div`
   }
 `;
 
-const FooterWapper = styled.div`
+const FooterWrapper = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -116,9 +116,9 @@ function Search() {
         )}
       </section>
       {searchResults.length === 0 && (
-        <FooterWapper>
+        <FooterWrapper>
           <Footer />
-        </FooterWapper>
+        </FooterWrapper>
       )}
     </SearchPageBlock>
   );
