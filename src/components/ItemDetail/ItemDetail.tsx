@@ -5,6 +5,7 @@ import ItemIcon from '../ItemIcon/ItemIcon';
 import ItemName from '../ItemName/ItemName';
 import colors from '../../styles/colors';
 import { EquippableCategoryList, PhysicalArmList } from '../../utils/codeMap';
+import StorageInformation from './StorageInformation';
 
 const ItemDetailBlock = styled.div`
   display: grid;
@@ -27,12 +28,10 @@ const ItemDetailBlock = styled.div`
     font-size: 16px;
     display: flex;
     flex-direction: column;
-
     div,
     p {
       margin-bottom: 0.25rem;
     }
-
     .uniqueness-tradable {
       font-size: 0.75rem;
       color: ${colors.darkText};
@@ -45,12 +44,6 @@ const ItemDetailBlock = styled.div`
     }
     .category-name {
       font-size: 0.875rem;
-    }
-    .storage-information {
-      img {
-        width: 16px;
-        height: 16px;
-      }
     }
   }
 
@@ -94,9 +87,6 @@ function ItemDetail({ item }: ItemDetailProps) {
     rarity,
     isUnique,
     isUntradable,
-    isCrestWorthy,
-    isGlamourous,
-    isCollectable,
     itemLevel,
     physDamage,
     delay,
@@ -116,47 +106,7 @@ function ItemDetail({ item }: ItemDetailProps) {
           {name}
         </ItemName>
         <div className="category-name">{categoryName}</div>
-        <div className="storage-information">
-          {isCrestWorthy ? (
-            <img
-              src="/images/crest_worthy.png"
-              alt="문장 장식 가능"
-              title="문장 장식 가능"
-            />
-          ) : (
-            <img
-              src="/images/not_crest_worthy.png"
-              alt="문장 장식 불가"
-              title="문장 장식 불가"
-            />
-          )}
-          {isGlamourous ? (
-            <img
-              src="/images/glamourous.png"
-              alt="환상의 옷장 보관 가능"
-              title="환상의 옷장 보관 가능"
-            />
-          ) : (
-            <img
-              src="/images/not_glamourous.png"
-              alt="환상의 옷장 보관 불가"
-              title="환상의 옷장 보관 불가"
-            />
-          )}
-          {isCollectable ? (
-            <img
-              src="/images/collectable.png"
-              alt="추억의 보관함 보관 가능"
-              title="추억의 보관함 보관 가능"
-            />
-          ) : (
-            <img
-              src="/images/not_collectable.png"
-              alt="추억의 보관함 보관 불가"
-              title="추억의 보관함 보관 불가"
-            />
-          )}
-        </div>
+        <StorageInformation item={item} />
       </div>
       {EquippableCategoryList.includes(categoryName) && (
         <div className="item-level">아이템 레벨 {itemLevel}</div>
