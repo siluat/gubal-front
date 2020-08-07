@@ -2,17 +2,10 @@ import React from 'react';
 import { Item } from '../../types/Item';
 import styled from '@emotion/styled';
 import { times } from 'lodash';
-import colors from '../../styles/colors';
+import BlockHeader from './BlockHeader';
 
 const MateriaSlotsBlock = styled.div`
   margin: 0.6rem;
-  .block-header {
-    font-size: 0.75rem;
-    margin: 0;
-    padding-bottom: 0.2rem;
-    color: ${colors.darkText};
-    border-bottom: 1px solid #3d3d3d;
-  }
   .slot-icons {
     padding: 0.6rem;
   }
@@ -32,7 +25,7 @@ function MateriaSlots({ item, className }: MateriaSlotsProps) {
 
   return (
     <MateriaSlotsBlock className={className}>
-      <h2 className="block-header">마테리아</h2>
+      <BlockHeader>마테리아</BlockHeader>
       <div className="slot-icons">
         {times(materiaSlotCount, number => (
           <img

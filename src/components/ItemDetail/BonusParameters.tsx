@@ -3,16 +3,10 @@ import { Item } from '../../types/Item';
 import styled from '@emotion/styled';
 import colors from '../../styles/colors';
 import { BaseParam } from '../../types/BaseParam';
+import BlockHeader from './BlockHeader';
 
 const BonusParametersBlock = styled.div`
   margin: 0.6rem;
-  .block-header {
-    font-size: 0.75rem;
-    margin: 0;
-    padding-bottom: 0.2rem;
-    color: ${colors.darkText};
-    border-bottom: 1px solid #3d3d3d;
-  }
   dl {
     margin: 0.6rem;
     display: grid;
@@ -65,7 +59,7 @@ function BonusParameters({ item, className }: BonusParametersProps) {
 
   return (
     <BonusParametersBlock className={className}>
-      <h2 className="block-header">추가 능력치</h2>
+      <BlockHeader>추가 능력치</BlockHeader>
       <dl>
         {baseParams.map(({ name, value }) => (
           <div key={name}>
