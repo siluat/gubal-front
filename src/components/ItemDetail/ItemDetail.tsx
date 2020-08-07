@@ -6,6 +6,7 @@ import ItemName from '../ItemName/ItemName';
 import colors from '../../styles/colors';
 import { EquippableCategoryList, PhysicalArmList } from '../../utils/codeMap';
 import StorageInformation from './StorageInformation';
+import BonusParameters from './BonusParameters';
 
 const ItemDetailBlock = styled.div`
   display: grid;
@@ -13,6 +14,7 @@ const ItemDetailBlock = styled.div`
     'icon base-information'
     'item-level item-level'
     'physical-spec physical-spec'
+    'bonus-parameters bonus-parameters'
     / 100px 1fr;
 
   padding-top: 1rem;
@@ -74,6 +76,10 @@ const ItemDetailBlock = styled.div`
       margin-top: 0.3rem;
     }
   }
+
+  .bonus-parameters {
+    grid-area: bonus-parameters;
+  }
 `;
 
 export type ItemDetailProps = {
@@ -129,6 +135,7 @@ function ItemDetail({ item }: ItemDetailProps) {
           </dl>
         </div>
       )}
+      <BonusParameters className="bonus-parameters" item={item} />
     </ItemDetailBlock>
   );
 }

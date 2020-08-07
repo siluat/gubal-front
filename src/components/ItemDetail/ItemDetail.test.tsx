@@ -105,18 +105,52 @@ describe('ItemDetail', () => {
 
   test(`아이템 카테고리에 따라 아이템 레벨을 표시한다`, () => {
     render(<ItemDetail item={testItem} />);
-    expect(screen.getByText(/아이템 레벨/i)).toBeInTheDocument();
+    expect(screen.getByText(/아이템 레벨/)).toBeInTheDocument();
   });
 
   test(`아이템 카테고리에 따라 아이템 레벨을 표시하지 않는다`, () => {
     render(<ItemDetail item={potion} />);
-    expect(screen.queryByText(/아이템 레벨/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/아이템 레벨/)).not.toBeInTheDocument();
   });
 
   test(`격투무기일 경우 물리 성능 표시`, () => {
     render(<ItemDetail item={pugilistArm} />);
-    expect(screen.getByText(/물리 기본 성능/i)).toBeInTheDocument();
-    expect(screen.getByText(/물리 자동 공격/i)).toBeInTheDocument();
-    expect(screen.getByText(/공격 주기/i)).toBeInTheDocument();
+    expect(screen.getByText(/물리 기본 성능/)).toBeInTheDocument();
+    expect(screen.getByText(/물리 자동 공격/)).toBeInTheDocument();
+    expect(screen.getByText(/공격 주기/)).toBeInTheDocument();
+  });
+
+  test(`추가 능력치가 있을 경우 추가 능력치 표시`, () => {
+    const item: Item = {
+      ...pugilistArm,
+      baseParam4: {
+        name: '극대화',
+        value: 467,
+      },
+      baseParam5: {
+        name: '민첩',
+        value: 431,
+      },
+    };
+    render(<ItemDetail item={item} />);
+    expect(screen.getByText(/추가 능력치/)).toBeInTheDocument();
+    expect(screen.getByText(/극대화/)).toBeInTheDocument();
+    expect(screen.getByText(/467/)).toBeInTheDocument();
+    expect(screen.getByText(/민첩/)).toBeInTheDocument();
+    expect(screen.getByText(/431/)).toBeInTheDocument();
+  });
+
+  test(`추가 능력치가 없을 경우 추가 능력치를 표시하지 않음`, () => {
+    const item: Item = {
+      ...pugilistArm,
+      baseParam0: undefined,
+      baseParam1: undefined,
+      baseParam2: undefined,
+      baseParam3: undefined,
+      baseParam4: undefined,
+      baseParam5: undefined,
+    };
+    render(<ItemDetail item={item} />);
+    expect(screen.queryByText(/추가 능력치/)).not.toBeInTheDocument();
   });
 });
