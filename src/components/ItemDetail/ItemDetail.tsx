@@ -52,14 +52,17 @@ const ItemDetailBlock = styled.div`
   .item-level {
     grid-area: item-level;
     margin-top: 0.5rem;
-    padding: 0.6rem 1.2rem;
+    padding: 0.6rem;
     background-color: ${colors.darkBackground};
     font-size: 0.875rem;
   }
 
   .physical-spec {
     grid-area: physical-spec;
-    padding: 0 1.2rem;
+    margin: 1rem 1.2rem;
+    dl {
+      margin: 0;
+    }
     div {
       display: flex;
       justify-content: space-between;

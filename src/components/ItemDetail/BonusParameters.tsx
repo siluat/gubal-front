@@ -5,7 +5,7 @@ import colors from '../../styles/colors';
 import { BaseParam } from '../../types/BaseParam';
 
 const BonusParametersBlock = styled.div`
-  padding: 0 0.6rem;
+  margin: 0.6rem;
   .block-header {
     font-size: 0.75rem;
     margin: 0;
@@ -17,7 +17,7 @@ const BonusParametersBlock = styled.div`
     margin: 0.6rem;
     display: grid;
     grid-template-areas: 'a a';
-    grid-row-gap: 0.3rem;
+    grid-row-gap: 0.35rem;
     div {
       display: flex;
       dt,
