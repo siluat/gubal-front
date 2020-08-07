@@ -153,4 +153,33 @@ describe('ItemDetail', () => {
     render(<ItemDetail item={item} />);
     expect(screen.queryByText(/추가 능력치/)).not.toBeInTheDocument();
   });
+
+  test(`마테리아 슬롯 0개`, () => {
+    const item: Item = {
+      ...pugilistArm,
+      materiaSlotCount: 0,
+    };
+    render(<ItemDetail item={item} />);
+    expect(screen.queryByAltText(/마테리아 슬롯/)).not.toBeInTheDocument();
+  });
+
+  test(`마테리아 슬롯 1개`, () => {
+    const item: Item = {
+      ...pugilistArm,
+      materiaSlotCount: 1,
+    };
+    render(<ItemDetail item={item} />);
+    const slotIconCount = screen.getAllByAltText(/마테리아 슬롯/).length;
+    expect(slotIconCount).toBe(1);
+  });
+
+  test(`마테리아 슬롯 2개`, () => {
+    const item: Item = {
+      ...pugilistArm,
+      materiaSlotCount: 2,
+    };
+    render(<ItemDetail item={item} />);
+    const slotIconCount = screen.getAllByAltText(/마테리아 슬롯/).length;
+    expect(slotIconCount).toBe(2);
+  });
 });

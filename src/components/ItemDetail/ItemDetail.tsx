@@ -7,6 +7,7 @@ import colors from '../../styles/colors';
 import { EquippableCategoryList, PhysicalArmList } from '../../utils/codeMap';
 import StorageInformation from './StorageInformation';
 import BonusParameters from './BonusParameters';
+import MateriaSlots from './MateriaSlots';
 
 const ItemDetailBlock = styled.div`
   display: grid;
@@ -15,6 +16,7 @@ const ItemDetailBlock = styled.div`
     'item-level item-level'
     'physical-spec physical-spec'
     'bonus-parameters bonus-parameters'
+    'materia-slots materia-slots'
     / 100px 1fr;
 
   padding-top: 1rem;
@@ -83,6 +85,10 @@ const ItemDetailBlock = styled.div`
   .bonus-parameters {
     grid-area: bonus-parameters;
   }
+
+  .materia-slots {
+    grid-area: materia-slots;
+  }
 `;
 
 export type ItemDetailProps = {
@@ -139,6 +145,7 @@ function ItemDetail({ item }: ItemDetailProps) {
         </div>
       )}
       <BonusParameters className="bonus-parameters" item={item} />
+      <MateriaSlots className="materia-slots" item={item} />
     </ItemDetailBlock>
   );
 }
