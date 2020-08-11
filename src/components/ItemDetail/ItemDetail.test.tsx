@@ -182,4 +182,11 @@ describe('ItemDetail', () => {
     const slotIconCount = screen.getAllByAltText(/마테리아 슬롯/).length;
     expect(slotIconCount).toBe(2);
   });
+
+  test(`수리 가능 아이템의 수리 관련 정보 표시`, () => {
+    render(<ItemDetail item={pugilistArm} />);
+    expect(screen.getByText(/대장장이/)).toBeInTheDocument();
+    expect(screen.getByText(/레벨 60 이상/)).toBeInTheDocument();
+    expect(screen.getByText(/7등급 암흑물질/)).toBeInTheDocument();
+  });
 });

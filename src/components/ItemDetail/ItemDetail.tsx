@@ -8,6 +8,7 @@ import { EquippableCategoryList, PhysicalArmList } from '../../utils/codeMap';
 import StorageInformation from './StorageInformation';
 import BonusParameters from './BonusParameters';
 import MateriaSlots from './MateriaSlots';
+import CraftingAndRepair from './CraftingAndRepair';
 
 const ItemDetailBlock = styled.div`
   display: grid;
@@ -17,6 +18,7 @@ const ItemDetailBlock = styled.div`
     'physical-spec physical-spec'
     'bonus-parameters bonus-parameters'
     'materia-slots materia-slots'
+    'crafting-and-repair crafting-and-repair'
     / 100px 1fr;
 
   padding-top: 1rem;
@@ -89,6 +91,10 @@ const ItemDetailBlock = styled.div`
   .materia-slots {
     grid-area: materia-slots;
   }
+
+  .crafting-and-repair {
+    grid-area: crafting-and-repair;
+  }
 `;
 
 export type ItemDetailProps = {
@@ -146,6 +152,7 @@ function ItemDetail({ item }: ItemDetailProps) {
       )}
       <BonusParameters className="bonus-parameters" item={item} />
       <MateriaSlots className="materia-slots" item={item} />
+      <CraftingAndRepair className="crafting-and-repair" item={item} />
     </ItemDetailBlock>
   );
 }
