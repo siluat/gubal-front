@@ -6,9 +6,12 @@ import BlockHeader from './BlockHeader';
 
 const CraftingAndRepairBlock = styled.div`
   margin: 0.6rem;
+  ul,
   dl {
     margin: 0.6rem;
     font-size: 0.875rem;
+  }
+  dl {
     div {
       margin: 0;
       dt,
@@ -25,6 +28,14 @@ const CraftingAndRepairBlock = styled.div`
       margin-top: 0.3rem;
     }
   }
+  ul {
+    list-style: none;
+    padding: 0;
+    color: ${colors.highlight};
+    span {
+      ${colors.text};
+    }
+  }
 `;
 
 type CraftingAndRepairProps = {
@@ -33,7 +44,13 @@ type CraftingAndRepairProps = {
 };
 
 function CraftingAndRepair({ item, className }: CraftingAndRepairProps) {
-  const { repairClassJob, equipLevel, repairItem, materiaSlotCount } = item;
+  const {
+    repairClassJob,
+    equipLevel,
+    repairItem,
+    materiaSlotCount,
+    materializeType,
+  } = item;
   const repairLevel = Math.max(equipLevel - 10, 1);
 
   if (!repairClassJob) {
@@ -63,6 +80,15 @@ function CraftingAndRepair({ item, className }: CraftingAndRepairProps) {
           </div>
         )}
       </dl>
+      <BlockHeader>{}</BlockHeader>
+      <ul>
+        <li>
+          마테리아화:{' '}
+          <span data-testid="extractable">
+            {materializeType > 0 ? 'O' : 'X'}
+          </span>
+        </li>
+      </ul>
     </CraftingAndRepairBlock>
   );
 }

@@ -205,4 +205,21 @@ describe('ItemDetail', () => {
     expect(screen.queryByText(/마테리아 장착 레벨/)).not.toBeInTheDocument();
     expect(screen.queryByText(/대장장이 레벨 70 이상/)).not.toBeInTheDocument();
   });
+
+  test(`마테리아화 가능 표시`, () => {
+    const ableItem: Item = {
+      ...pugilistArm,
+    };
+    render(<ItemDetail item={ableItem} />);
+    expect(screen.getByTestId('extractable').textContent).toBe('O');
+  });
+
+  test(`마테리아화 불가능 표시`, () => {
+    const unableItem: Item = {
+      ...pugilistArm,
+      materializeType: 0,
+    };
+    render(<ItemDetail item={unableItem} />);
+    expect(screen.getByTestId('extractable').textContent).toBe('X');
+  });
 });
