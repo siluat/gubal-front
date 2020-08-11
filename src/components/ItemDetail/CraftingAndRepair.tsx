@@ -33,7 +33,7 @@ type CraftingAndRepairProps = {
 };
 
 function CraftingAndRepair({ item, className }: CraftingAndRepairProps) {
-  const { repairClassJob, equipLevel, repairItem } = item;
+  const { repairClassJob, equipLevel, repairItem, materiaSlotCount } = item;
   const repairLevel = Math.max(equipLevel - 10, 1);
 
   if (!repairClassJob) {
@@ -55,6 +55,12 @@ function CraftingAndRepair({ item, className }: CraftingAndRepairProps) {
               <dd>{repairItem}</dd>
             </div>
           </>
+        )}
+        {materiaSlotCount > 0 && (
+          <div>
+            <dt>마테리아 장착 레벨</dt>
+            <dd>{`${repairClassJob} 레벨 ${equipLevel} 이상`}</dd>
+          </div>
         )}
       </dl>
     </CraftingAndRepairBlock>

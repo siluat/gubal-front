@@ -185,8 +185,24 @@ describe('ItemDetail', () => {
 
   test(`수리 가능 아이템의 수리 관련 정보 표시`, () => {
     render(<ItemDetail item={pugilistArm} />);
-    expect(screen.getByText(/대장장이/)).toBeInTheDocument();
+    expect(screen.getAllByText(/대장장이/).length).toBeGreaterThan(0);
     expect(screen.getByText(/레벨 60 이상/)).toBeInTheDocument();
     expect(screen.getByText(/7등급 암흑물질/)).toBeInTheDocument();
+  });
+
+  test(`마테리아 슬롯이 있을 경우 마테리아 장착 가능 직업과 레벨 표시`, () => {
+    render(<ItemDetail item={pugilistArm} />);
+    expect(screen.getByText(/마테리아 장착 레벨/)).toBeInTheDocument();
+    expect(screen.getByText(/대장장이 레벨 70 이상/)).toBeInTheDocument();
+  });
+
+  test(`마테리아 슬롯이 없을 경우 마테리아 장착 가능 직업과 레벨 미표시`, () => {
+    const item: Item = {
+      ...pugilistArm,
+      materiaSlotCount: 0,
+    };
+    render(<ItemDetail item={item} />);
+    expect(screen.queryByText(/마테리아 장착 레벨/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/대장장이 레벨 70 이상/)).not.toBeInTheDocument();
   });
 });
