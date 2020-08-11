@@ -32,8 +32,12 @@ const CraftingAndRepairBlock = styled.div`
     list-style: none;
     padding: 0;
     color: ${colors.highlight};
-    span {
-      ${colors.text};
+    li {
+      display: inline-block;
+      width: 50%;
+      span {
+        color: ${colors.text};
+      }
     }
   }
 `;
@@ -50,6 +54,7 @@ function CraftingAndRepair({ item, className }: CraftingAndRepairProps) {
     repairItem,
     materiaSlotCount,
     materializeType,
+    glamourItem,
   } = item;
   const repairLevel = Math.max(equipLevel - 10, 1);
 
@@ -87,6 +92,10 @@ function CraftingAndRepair({ item, className }: CraftingAndRepairProps) {
           <span data-testid="extractable">
             {materializeType > 0 ? 'O' : 'X'}
           </span>
+        </li>
+        <li>
+          장비 투영:{' '}
+          <span data-testid="projectable">{glamourItem ? 'O' : 'X'}</span>
         </li>
       </ul>
     </CraftingAndRepairBlock>

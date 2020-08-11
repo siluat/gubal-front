@@ -222,4 +222,22 @@ describe('ItemDetail', () => {
     render(<ItemDetail item={unableItem} />);
     expect(screen.getByTestId('extractable').textContent).toBe('X');
   });
+
+  test(`장비 투영 가능 표시`, () => {
+    const ableItem: Item = {
+      ...pugilistArm,
+      glamourItem: '환상의 프리즘',
+    };
+    render(<ItemDetail item={ableItem} />);
+    expect(screen.getByTestId('projectable').textContent).toBe('O');
+  });
+
+  test(`장비 투영 불가능 표시`, () => {
+    const unableItem: Item = {
+      ...pugilistArm,
+      glamourItem: null,
+    };
+    render(<ItemDetail item={unableItem} />);
+    expect(screen.getByTestId('projectable').textContent).toBe('X');
+  });
 });
