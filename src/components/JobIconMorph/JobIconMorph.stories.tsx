@@ -1,16 +1,19 @@
 import React from 'react';
-import JobIconMorph from './JobIconMorph';
-import { withKnobs, color } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import JobIconMorph, { JobIconMorphProps } from './JobIconMorph';
+import colors from '../../styles/colors';
 
 export default {
+  title: 'Components/JobIconMorph',
   component: JobIconMorph,
-  title: 'components/JobIconMorph',
-  decorators: [withKnobs],
-};
+  argTypes: {
+    color: { control: 'color' },
+  },
+  args: {
+    color: colors.highlight,
+  },
+} as Meta;
 
-export const jobIconMorph = () => (
-  <JobIconMorph color={color('color', '#000000')} />
-);
-jobIconMorph.story = {
-  name: 'Default',
-};
+const Template: Story<JobIconMorphProps> = (args) => <JobIconMorph {...args} />;
+
+export const Default = Template.bind({});
