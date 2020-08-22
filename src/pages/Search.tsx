@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import SearchInput from '../components/SearchInput/SearchInput';
 import styled from '@emotion/styled';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,6 +9,7 @@ import SearchResult from '../components/SearchResult/SearchResult';
 import Footer from '../components/Footer/Footer';
 import ReadyingMessage from '../components/ReadyingMessage';
 import GuideForSearch from '../components/GuideForSearch';
+import { useParams, useHistory } from 'react-router-dom';
 
 const SearchPageBlock = styled.div`
   display: flex;
@@ -30,6 +31,9 @@ const FooterWrapper = styled.div`
 `;
 
 function Search() {
+  const history = useHistory();
+  const { searchKeyword } = useParams<{ searchKeyword: string }>();
+
   const { readyToSearch, searchResults } = useSelector(
     (state: RootState) => state.library,
   );
@@ -38,10 +42,10 @@ function Search() {
 
   const onInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const searchKeyword = e.currentTarget.value.trim();
-      dispatch(keywordChanged(searchKeyword));
+      const nextKeyword = e.currentTarget.value.trim();
+      history.push(`/search/${nextKeyword}`);
     },
-    [dispatch],
+    [history],
   );
 
   const searchInputTransition = useTransition(readyToSearch, null, {
@@ -58,6 +62,10 @@ function Search() {
       opacity: 0,
     },
   });
+
+  useEffect(() => {
+    dispatch(keywordChanged(searchKeyword));
+  }, [searchKeyword, dispatch, readyToSearch]);
 
   return (
     <SearchPageBlock data-testid="search-page">

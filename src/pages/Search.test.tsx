@@ -5,6 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer, { rootSaga } from '../modules';
 import { getItemSummariesAsync } from '../modules/library';
+import { MemoryRouter } from 'react-router-dom';
 
 const setupStore = () => {
   const sagaMiddleware = createSagaMiddleware();
@@ -17,7 +18,12 @@ describe('Search Page', () => {
   test('기본 렌더링', async () => {
     const store = setupStore();
 
-    render(<Search />, { store });
+    render(
+      <MemoryRouter initialEntries={['/search']}>
+        <Search />
+      </MemoryRouter>,
+      { store },
+    );
 
     expect(screen.getByTestId('readying-message')).toBeInTheDocument();
 

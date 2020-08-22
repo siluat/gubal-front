@@ -8,7 +8,7 @@ import ItemPage from './pages/ItemPage';
 export function AppRoute() {
   return (
     <Switch>
-      <Route exact path={['/', '/search']}>
+      <Route exact path={['/', '/search', '/search/:searchKeyword']}>
         <Search />
       </Route>
       <Route exact path="/item/:id">
