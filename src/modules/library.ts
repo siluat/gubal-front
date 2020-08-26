@@ -4,7 +4,7 @@ import {
   createReducer,
   createAction,
 } from 'typesafe-actions';
-import { call, put, takeEvery, debounce } from 'redux-saga/effects';
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { getItemSummaries } from '../lib/api';
 import { ItemRarity } from '../types/ItemRairity';
 
@@ -70,7 +70,7 @@ function* searchItemSaga(action: { type: string; payload: string }) {
 
 export function* librarySaga() {
   yield takeEvery(GET_ITEM_SUMMARIES, getItemSummariesSaga);
-  yield debounce(200, KEYWORD_CHANGED, searchItemSaga);
+  yield takeLatest(KEYWORD_CHANGED, searchItemSaga);
 }
 
 /**

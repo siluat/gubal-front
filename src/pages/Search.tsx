@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import SearchInput from '../components/SearchInput/SearchInput';
 import styled from '@emotion/styled';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,6 +10,7 @@ import Footer from '../components/Footer/Footer';
 import ReadyingMessage from '../components/ReadyingMessage';
 import GuideForSearch from '../components/GuideForSearch';
 import { useParams, useHistory } from 'react-router-dom';
+import useDebounce from '../hooks/useDebounce';
 
 const SearchPageBlock = styled.div`
   display: flex;
@@ -33,6 +34,8 @@ const FooterWrapper = styled.div`
 function Search() {
   const history = useHistory();
   const { searchKeyword } = useParams<{ searchKeyword: string }>();
+  const [nextSearchKeyword, setNextSearchKeyword] = useState<string>();
+  const debouncedNextSearchKeyword = useDebounce(nextSearchKeyword, 200);
 
   const { readyToSearch, searchResults } = useSelector(
     (state: RootState) => state.library,
@@ -43,9 +46,9 @@ function Search() {
   const onInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const nextKeyword = e.currentTarget.value.trim();
-      history.push(`/search/${nextKeyword}`);
+      setNextSearchKeyword(nextKeyword);
     },
-    [history],
+    [],
   );
 
   const searchInputTransition = useTransition(readyToSearch, null, {
@@ -66,6 +69,12 @@ function Search() {
   useEffect(() => {
     dispatch(keywordChanged(searchKeyword));
   }, [searchKeyword, dispatch, readyToSearch]);
+
+  useEffect(() => {
+    if (debouncedNextSearchKeyword && debouncedNextSearchKeyword.length > 0) {
+      history.push(`/search/${debouncedNextSearchKeyword}`);
+    }
+  }, [debouncedNextSearchKeyword, history]);
 
   return (
     <SearchPageBlock data-testid="search-page">
