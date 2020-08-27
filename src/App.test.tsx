@@ -82,4 +82,16 @@ describe('아이템 검색 후 상세 정보 조회', () => {
       expect(screen.getByText('양손창')).toBeInTheDocument();
     });
   });
+
+  test('/main URL로 접근시 MainPage가 렌더링 된다', async () => {
+    render(
+      <MemoryRouter initialEntries={['/main']}>
+        <AppRoute />
+      </MemoryRouter>,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText(/Main Page/i)).toBeInTheDocument();
+    });
+  });
 });

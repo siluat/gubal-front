@@ -4,6 +4,7 @@ import Search from './pages/Search';
 import { useDispatch } from 'react-redux';
 import { getItemSummariesAsync } from './modules/library';
 import ItemPage from './pages/ItemPage';
+import MainPage from './pages/MainPage';
 
 export function AppRoute() {
   return (
@@ -14,6 +15,7 @@ export function AppRoute() {
       <Route exact path="/item/:id">
         <ItemPage data-testid="item-page" />
       </Route>
+      <Route exact path="/main" component={MainPage} />
     </Switch>
   );
 }
