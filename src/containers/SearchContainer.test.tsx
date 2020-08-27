@@ -1,17 +1,7 @@
 import React from 'react';
-import { render, screen } from '../utils/test-utils';
-import createSagaMiddleware from 'redux-saga';
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer, { rootSaga } from '../modules';
+import { render, screen, setupStore } from '../utils/test-utils';
 import SearchContainer from './SearchContainer';
 import { getItemSummariesAsync } from '../modules/library';
-
-const setupStore = () => {
-  const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-  sagaMiddleware.run(rootSaga);
-  return store;
-};
 
 describe('SearchContainer', () => {
   test('데이터 로드 이전에는 데이터 로드 상태임을 표시', () => {

@@ -5,11 +5,16 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer, { rootSaga } from '../modules';
 
-const sagaMiddleware = createSagaMiddleware();
-const testStore = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(rootSaga);
+export function setupStore() {
+  const sagaMiddleware = createSagaMiddleware();
+  const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+  sagaMiddleware.run(rootSaga);
+  return store;
+}
 
-function render(ui, { store = testStore, ...renderOptions } = {}) {
+const defaultStore = setupStore();
+
+function render(ui, { store = defaultStore, ...renderOptions } = {}) {
   function Wrapper({ children }) {
     return <Provider store={store}>{children}</Provider>;
   }

@@ -1,18 +1,8 @@
 import React from 'react';
-import { render, screen, waitFor } from '../utils/test-utils';
+import { render, screen, waitFor, setupStore } from '../utils/test-utils';
 import Search from './Search';
-import createSagaMiddleware from 'redux-saga';
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer, { rootSaga } from '../modules';
 import { getItemSummariesAsync } from '../modules/library';
 import { MemoryRouter } from 'react-router-dom';
-
-const setupStore = () => {
-  const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-  sagaMiddleware.run(rootSaga);
-  return store;
-};
 
 describe('Search Page', () => {
   test('기본 렌더링', async () => {
