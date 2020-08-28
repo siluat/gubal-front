@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import JobIconMorph from './JobIconMorph/JobIconMorph';
 
-const ReadyingMessageBlock = styled.div`
+const InitializationMessageBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,13 +12,13 @@ const ReadyingMessageBlock = styled.div`
   }
 `;
 
-function ReadyingMessage() {
+function InitializationMessage() {
   return (
-    <ReadyingMessageBlock data-testid="readying-message">
+    <InitializationMessageBlock>
       <JobIconMorph />
       <p>검색에 필요한 데이터를 준비 중</p>
-    </ReadyingMessageBlock>
+    </InitializationMessageBlock>
   );
 }
 
-export default ReadyingMessage;
+export default InitializationMessage;

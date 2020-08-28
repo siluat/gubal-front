@@ -7,7 +7,7 @@ import { RootState } from '../modules';
 import { keywordChanged } from '../modules/library';
 import SearchResult from '../components/SearchResult/SearchResult';
 import Footer from '../components/Footer/Footer';
-import ReadyingMessage from '../components/ReadyingMessage';
+import InitializationMessage from '../components/InitializationMessage';
 import GuideForSearch from '../components/GuideForSearch';
 import { useParams, useHistory } from 'react-router-dom';
 import useDebounce from '../hooks/useDebounce';
@@ -86,7 +86,7 @@ function Search() {
         ) : null,
       )}
       <section className="main-content">
-        {!readyToSearch && <ReadyingMessage />}
+        {!readyToSearch && <InitializationMessage />}
         {readyToSearch && searchResults.length === 0 && <GuideForSearch />}
         {readyToSearch && searchResults.length !== 0 && (
           <SearchResult items={searchResults} />

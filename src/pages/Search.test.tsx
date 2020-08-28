@@ -15,7 +15,7 @@ describe('Search Page', () => {
       { store },
     );
 
-    expect(screen.getByTestId('readying-message')).toBeInTheDocument();
+    expect(screen.getByText(/검색에 필요한 데이터를 준비 중/)).toBeInTheDocument();
 
     store.dispatch(
       getItemSummariesAsync.success([

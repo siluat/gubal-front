@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchInput from '../components/SearchInput/SearchInput';
-import ReadyingMessage from '../components/ReadyingMessage';
+import InitializationMessage from '../components/InitializationMessage';
 import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
 
@@ -12,7 +12,7 @@ function SearchContainer({ children }: SearchContainerProps) {
   const { readyToSearch } = useSelector((state: RootState) => state.library);
 
   if (!readyToSearch) {
-    return <ReadyingMessage />;
+    return <InitializationMessage />;
   }
 
   return (
