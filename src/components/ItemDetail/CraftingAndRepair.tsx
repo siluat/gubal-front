@@ -88,7 +88,7 @@ function CraftingAndRepair({ item, className }: CraftingAndRepairProps) {
       <BlockHeader>{}</BlockHeader>
       <ul>
         <li>
-          마테리아화:{' '}
+          마테리아 정제:{' '}
           <span data-testid="extractable">
             {materializeType > 0 ? 'O' : 'X'}
           </span>
