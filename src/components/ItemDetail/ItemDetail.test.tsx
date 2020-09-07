@@ -240,4 +240,22 @@ describe('ItemDetail', () => {
     render(<ItemDetail item={unableItem} />);
     expect(screen.getByTestId('projectable').textContent).toBe('X');
   });
+
+  test(`아이템 적정 분해 숙련도 표시`, () => {
+    const desynthesizableItem: Item = {
+      ...pugilistArm,
+      salvage: 430,
+    };
+    render(<ItemDetail item={desynthesizableItem} />);
+    expect(screen.getByTestId('salvage').textContent).toBe('430');
+  });
+
+  test(`분해 불가 아이템 표시`, () => {
+    const notDesynthesizableItem: Item = {
+      ...pugilistArm,
+      salvage: null,
+    };
+    render(<ItemDetail item={notDesynthesizableItem} />);
+    expect(screen.getByTestId('salvage').textContent).toBe('X');
+  });
 });
